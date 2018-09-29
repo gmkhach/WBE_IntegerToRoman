@@ -22,7 +22,7 @@ namespace WBE_IntegerToRoman
                 try
                 {
                     Console.Write("Enter an integer\n\n>>> ");
-                    int input = int.Parse(Console.ReadLine().Trim());
+                    int input = int.Parse(Console.ReadLine());
                     Console.WriteLine(IntToRomanNumeral(input));
                 }
                 catch (Exception ex)
@@ -37,17 +37,23 @@ namespace WBE_IntegerToRoman
 
         static string IntToRomanNumeral(int input)
         {
-            throw new NotImplementedException();
-            //string roman = "";
-            //int deci = 0;
-            //while (input >= 10)
-            //{
-            //    input %= 10;
-            //    deci++;
-            //}
-            //input -= deci * 10;
+            //throw new NotImplementedException();
+            if (input == 1000)
+            {
+                return "M";
+            }
 
-            //return roman;
+            string roman = "";
+            int thousands = input / 1000;
+            int hundreds = (input - thousands*1000)/100;
+            int tens = (input - thousands*1000 - hundreds*100) / 10;
+            int digits = input - thousands*1000 - hundreds*100 - tens*10;
+
+            string digitsPattern = "IIIVIIIX";
+            string tensPattern = "XXXLXXXC";
+            string hundredsPattern = "CCCDCCCM";
+
+            return roman;
         }
     }
 }
