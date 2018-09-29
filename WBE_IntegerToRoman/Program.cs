@@ -49,9 +49,14 @@ namespace WBE_IntegerToRoman
             int tens = (input - thousands*1000 - hundreds*100) / 10;
             int digits = input - thousands*1000 - hundreds*100 - tens*10;
 
-            string digitsPattern = "IIIVIIIX";
-            string tensPattern = "XXXLXXXC";
-            string hundredsPattern = "CCCDCCCM";
+            //string digitsPattern = "IIIVIIIX";
+            //string tensPattern = "XXXLXXXC";
+            //string hundredsPattern = "CCCDCCCM";
+            string[] romanDigits = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
+            string[] romanTens = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
+            string[] romanHundreds = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
+
+            roman = romanHundreds[hundreds] + romanTens[tens] + romanDigits[digits];
 
             return roman;
         }
