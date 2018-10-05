@@ -1,6 +1,6 @@
 ﻿/*
  * Write a function that accepts an integer, and returns that integer in Roman numerals (as a string).
- * Assume the number will be 0 < n < 40
+ * Assume the number will be 0 < n < 50
  * ie: 4 should return "IV"
  */
 
@@ -21,17 +21,22 @@ namespace WBE_IntegerToRoman
             {
                 try
                 {
-                    Console.Write("Enter an integer betwen 1 and 40\n\n>>> ");
+                    Console.Write("\nEnter an integer betwen 1 and 50\n\n>>> ");
                     int input = int.Parse(Console.ReadLine());
+                    if (input <= 0 || input >= 50)
+                    {
+                        Console.Clear();
+                        throw new Exception("Invalid Entry!");
+                    }
                     Console.WriteLine("\nRoman Numeral: " + IntToRomanNumeral(input));
+                    Console.Write("\nPress Enter to try another number...");
+                    Console.ReadLine();
+                    Console.Clear();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("\n" + ex.Message);
                 }
-                Console.Write("\nPress Enter to try another number...");
-                Console.ReadLine();
-                Console.Clear();
             } while (true);
         }
 
