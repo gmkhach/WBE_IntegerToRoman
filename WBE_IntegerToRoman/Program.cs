@@ -21,7 +21,7 @@ namespace WBE_IntegerToRoman
             {
                 try
                 {
-                    Console.Write("Enter an integer\n\n>>> ");
+                    Console.Write("Enter an integer betwen 1 and 40\n\n>>> ");
                     int input = int.Parse(Console.ReadLine());
                     Console.WriteLine("\nRoman Numeral: " + IntToRomanNumeral(input));
                 }
@@ -37,27 +37,43 @@ namespace WBE_IntegerToRoman
 
         static string IntToRomanNumeral(int input)
         {
-            //throw new NotImplementedException();
-            if (input == 1000)
-            {
-                return "M";
-            }
-
             string roman = "";
-            int thousands = input / 1000;
-            int hundreds = (input - thousands*1000)/100;
-            int tens = (input - thousands*1000 - hundreds*100) / 10;
-            int digits = input - thousands*1000 - hundreds*100 - tens*10;
 
-            //string digitsPattern = "IIIVIIIX";
-            //string tensPattern = "XXXLXXXC";
-            //string hundredsPattern = "CCCDCCCM";
-            string[] romanDigits = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
-            string[] romanTens = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
-            string[] romanHundreds = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
+            if (input / 10 != 0)
+            {
+                for (int i = 0; i < input / 10; i++)
+                {
+                    roman += "X";
+                }
+                if (roman.Length == 4)
+                {
+                    roman = "XL";
+                }
+            }
+            if (input % 10 < 4 || (input % 10 > 4 && input % 10 < 9))
+            {
 
-            roman = romanHundreds[hundreds] + romanTens[tens] + romanDigits[digits];
-
+                for (int i = 0; i < input % 10; i++)
+                {
+                    if (i == 0 && input % 10 > 4)
+                    {
+                        roman += "V";
+                        i = 4;
+                    }
+                    else
+                    {
+                        roman += "I";
+                    }
+                }
+            }
+            else if (input % 10 == 4)
+            {
+                roman += "IV";
+            }
+            else if (input % 10 == 9)
+            {
+                roman += "IX";
+            }
             return roman;
         }
     }
