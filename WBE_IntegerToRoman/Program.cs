@@ -29,7 +29,7 @@ namespace WBE_IntegerToRoman
                 {
                     Console.WriteLine("\n" + ex.Message);
                 }
-                Console.Write("\nPress Enter to try another string...");
+                Console.Write("\nPress Enter to try another number...");
                 Console.ReadLine();
                 Console.Clear();
             } while (true);
@@ -37,44 +37,40 @@ namespace WBE_IntegerToRoman
 
         static string IntToRomanNumeral(int input)
         {
-            string roman = "";
-
-            if (input / 10 != 0)
+            if(input / 10 != 0)
             {
-                for (int i = 0; i < input / 10; i++)
+                if (input / 10 == 4)
                 {
-                    roman += "X";
+                    return "XL" + IntToRomanNumeral(input - 40);
                 }
-                if (roman.Length == 4)
+                else
                 {
-                    roman = "XL";
+                    return "X" + IntToRomanNumeral(input - 10);
                 }
             }
-            if (input % 10 < 4 || (input % 10 > 4 && input % 10 < 9))
+            else if (input != 0)
             {
-
-                for (int i = 0; i < input % 10; i++)
+                if (input == 9)
                 {
-                    if (i == 0 && input % 10 > 4)
-                    {
-                        roman += "V";
-                        i = 4;
-                    }
-                    else
-                    {
-                        roman += "I";
-                    }
+                    return "IX" + IntToRomanNumeral(input - 9); ;
+                }
+                else if (input > 4)
+                {
+                    return "V" + IntToRomanNumeral(input - 5);
+                }
+                else if (input == 4)
+                {
+                    return "IV" + IntToRomanNumeral(input - 4);
+                }
+                else
+                {
+                    return "I" + IntToRomanNumeral(input - 1);
                 }
             }
-            else if (input % 10 == 4)
+            else
             {
-                roman += "IV";
+                return "";
             }
-            else if (input % 10 == 9)
-            {
-                roman += "IX";
-            }
-            return roman;
         }
     }
 }
