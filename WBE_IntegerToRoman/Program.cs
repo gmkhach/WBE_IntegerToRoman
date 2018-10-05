@@ -39,14 +39,7 @@ namespace WBE_IntegerToRoman
         {
             if(input / 10 != 0)
             {
-                if (input / 10 == 4)
-                {
-                    return "XL" + IntToRomanNumeral(input - 40);
-                }
-                else
-                {
-                    return "X" + IntToRomanNumeral(input - 10);
-                }
+                return input / 10 == 4 ? "XL" + IntToRomanNumeral(input - 40) : "X" + IntToRomanNumeral(input - 10);
             }
             else if (input != 0)
             {
