@@ -29,14 +29,14 @@ namespace WBE_IntegerToRoman
                         throw new Exception("Invalid Entry!");
                     }
                     Console.WriteLine("\nRoman Numeral: " + IntToRomanNumeral(input));
-                    Console.Write("\nPress Enter to try another number...");
-                    Console.ReadLine();
-                    Console.Clear();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("\n" + ex.Message);
                 }
+                Console.Write("\nPress Enter to try another number...");
+                Console.ReadLine();
+                Console.Clear();
             } while (true);
         }
 
@@ -52,8 +52,9 @@ namespace WBE_IntegerToRoman
                 {
                     return "IX" + IntToRomanNumeral(input - 9); ;
                 }
-                else if (input > 4)
+                else if (input >= 5)
                 {
+                    // if the digit is between 5 and 8 we want to place a 'V' in place first before adding the 'I's. 
                     return "V" + IntToRomanNumeral(input - 5);
                 }
                 else if (input == 4)
@@ -62,11 +63,13 @@ namespace WBE_IntegerToRoman
                 }
                 else
                 {
+                    // The 'I's of 1, 2, 3, 6, 7, and 8 will be added here.
                     return "I" + IntToRomanNumeral(input - 1);
                 }
             }
             else
             {
+                // the is the last step in building the return string and indicates that all of the digits have been converted to Roman numerals.
                 return "";
             }
         }
